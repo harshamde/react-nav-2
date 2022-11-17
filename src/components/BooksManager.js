@@ -11,7 +11,7 @@ function BookView({ book, index }) {
             <div>{book.name}</div>
             <div>{book.author}</div>
             <div>{book.price}</div>
-            <button onClick={() => dispatch(booksSlice.actions.deleteBook({ book }))}>Delete</button>
+            <button onClick={() => dispatch(booksSlice.actions.deleteBook({ book }))}>Delete</button>&nbsp;
             <button onClick={() => dispatch(booksSlice.actions.editBook({ book }))}>Edit</button>
             <br />
             <label style={{ fontSize: "13px" }}>status: {!book.status ? "Server" : book.status}</label>
@@ -29,7 +29,7 @@ function BookEditView({ book, index }) {
             <br />
             Price: <input type="number" value={book.price} onChange={(e) => dispatch(booksSlice.actions.priceChange({ book, price: e.target.value }))} />
             <br />
-            <button onClick={() => dispatch(booksSlice.actions.updateBook({ book }))}>Update</button>
+            <button onClick={() => dispatch(booksSlice.actions.updateBook({ book }))}>Update</button> &nbsp;
             <button onClick={() => dispatch(booksSlice.actions.cancelEditBook({ book }))}>Cancel</button>
             <br />
             <label style={{ fontSize: "13px" }}>status: {!book.status ? "Server" : book.status}</label>
@@ -64,7 +64,6 @@ function BooksManager() {
             ))}
 
             <br />
-
             <button onClick={() => dispatch(booksSlice.actions.addNewBook())}>Add New Book</button>
             <br />
             <button onClick={() => dispatch(saveBooksToServer(booksSliceState.books))}>Save To Database</button>
