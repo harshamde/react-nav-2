@@ -7,7 +7,6 @@ const fetch = ({ url, method, data }) => {
         xhr.onload = () => {
             const json = xhr.responseText;
             const data = JSON.parse(json);
-            console.log(data);
             resolve(data);
         };
 

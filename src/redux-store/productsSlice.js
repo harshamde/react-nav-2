@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import ProductsThunk from "./productsThunk";
 const { getProductsFromServer, saveProductsToServer } = ProductsThunk;
 
+const ObjectID = require("bson-objectid");
+
 const productsSlice = createSlice({
     name: 'productsSlice',
     initialState: {
@@ -91,8 +93,8 @@ const productsSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getProductsFromServer.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.error = null;
-            state.products = action.payload.products;
+            state.products = action.payload.products.map(product => ({ ...product, status: "from-server" }));
+
         });
 
         builder.addCase(getProductsFromServer.pending, (state, action) => {
