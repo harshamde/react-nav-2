@@ -11,7 +11,9 @@ const booksSlice = createSlice({
         isLoading: false,
         error: null,
         originalBookForEdit: null,
+        isSaving: false
     },
+
     reducers: {
 
         nameChange: (state, action) => {
@@ -114,18 +116,16 @@ const booksSlice = createSlice({
             state.error = action.error.message;
         });
 
-        // builder.addCase(saveBooksToServer.rejected, (state, action) => {
-        //     state.error = action.error.message;
-        //     state.isLoading = false;
-        // });
+        builder.addCase(saveBooksToServer.rejected, (state, action) => {
+            state.isSaving = false;
+        });
 
-        // builder.addCase(saveBooksToServer.pending, (state, action) => {
-        //     state.isLoading = true;
-        // });
+        builder.addCase(saveBooksToServer.pending, (state, action) => {
+            state.isSaving = true;
+        });
 
         builder.addCase(saveBooksToServer.fulfilled, (state, action) => {
-            state.error = null;
-            state.isLoading = false;
+            state.isSaving = false;
             state.books = action.payload.books.map(book => ({ ...book, status: "from-server" }));
         });
 

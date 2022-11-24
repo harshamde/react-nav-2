@@ -1,0 +1,184 @@
+<div class="javascript-code">
+    <p class="text text-secondary">// write code here</p>
+</div>
+<div class="javascript-code">
+    <div class="code-indent-1">const express = require('express');</div>
+    <div class="code-indent-1">const app = express();</div>
+</div>
+
+<div class="code-indent-1 ">
+    const { mongoClient<span class="hide" data-${stepToAddForSaveBooksRoute}="">,ObjectId }</span>} =
+    require('mongodb');
+</div>
+
+<div class="code-indent-1 ">
+    const client = mongoClient(<span class="">'mongodb://127.0.0.1:27017'</span>);
+</div>
+
+<div class="code-indent-1 hide" data-${++stepToAddForSaveBooksRoute}="">
+    const cors = require('cors');
+</div>
+
+<div class="code-indent-1">
+    <br />
+    app.use(express.static('public'));
+</div>
+
+<div class="code-indent-1 hide" data-${++stepToAddForSaveBooksRoute}="">
+    app.use(cors());
+</div>
+
+<div class="code-indent-1 hide" data-${++stepToAddForSaveBooksRoute}="">
+    app.use(express.json());
+</div>
+
+<br />
+<div class="code-indent-1">
+    app.use(function (request, response, next) {
+    <div class="code-indent-1">setTimeout(() => { next() }, 2000);</div>
+    });
+</div>
+
+<div class="code-indent-1">
+    <br />
+    app.get(
+    <span class=""> '/get-books',</span>
+    <span class="">
+        <span class=""> async</span> (
+        <span class=""> request,response </span>
+        )&nbsp;=>&nbsp;{
+        <div class="code-indent-1 ">
+            await client.connect();
+        </div>
+        <div class="code-indent-1 ">
+            <span class="">const database = </span>client.db('tempdb');
+        </div>
+        <div class="code-indent-1 ">
+            <span class="">const collection = </span>database.collection('books');
+        </div>
+        <div class="code-indent-1 ">
+            <span class="">const books = </span>await collection.find().toArray();
+        </div>
+        <div class="code-indent-1">
+            response.json(
+            <span class="">books</span>
+            );
+        </div>
+        }
+    </span>
+    );
+</div>
+
+<div class="code-indent-1">
+    <br />
+    app.get(
+    <span class=""> '/get-products', </span>
+    <span class="">
+        <span class=""> async</span> (
+        <span class=""> request,response </span>
+        )&nbsp;=>&nbsp;{
+        <div class="code-indent-1 ">
+            await client.connect();
+        </div>
+        <div class="code-indent-1 ">
+            <span class="">const database = </span>client.db('tempdb');
+        </div>
+        <div class="code-indent-1 ">
+            <span class="">const collection = </span>database.collection('products');
+        </div>
+        <div class="code-indent-1 ">
+            <span class="">const products = </span>await collection.find();
+        </div>
+        <div class="code-indent-1">
+            response.json(
+            <span class="">products</span>
+            );
+        </div>
+        }
+    </span>
+    );
+</div>
+<br />
+
+<div class="code-indent-1 hide" data-${++stepToAddForSaveBooksRoute}="">
+    app.post(<span class="hide" data-${++stepToAddForSaveBooksRoute}="">'/save-books'</span><span class="hide"
+        data-${++stepToAddForSaveBooksRoute}="">, async(<span class="hide"
+            data-${++stepToAddForSaveBooksRoute}="">request, response</span>) => {
+        <div class="code-indent-1 hide" data-${++stepToAddForSaveBooksRoute}="">
+            const books = request.body;
+        </div>
+        <div class="code-indent-1 hide" data-${++stepToAddForSaveBooksRoute}="">
+            const collection = dataBase.collection("books");
+        </div>
+        <div class="code-indent-1 hide" data-${++stepToAddForSaveBooksRoute}="">
+            for (let book of books) {
+            <div class="code-indent-1 hide" data-${++stepToAddForSaveBooksRoute}="">
+                switch (book.status) {
+                <div class="code-indent-1 hide" data-${++stepToAddForSaveBooksRoute}="">
+                    case "new & updated":
+                </div>
+                <div class="code-indent-2 hide" data-${++stepToAddForSaveBooksRoute}="">
+                    delete book.status;
+                </div>
+                <div class="code-indent-2 hide" data-${++stepToAddForSaveBooksRoute}="">
+                    book._id = ObjectId(<span class="hide" data-${++stepToAddForSaveBooksRoute}="">book._id</span>);
+                </div>
+                <div class="code-indent-2 hide" data-${++stepToAddForSaveBooksRoute}="">
+                    await collection.insertOne(<span class="hide" data-${++stepToAddForSaveBooksRoute}="">book</span>);
+                    <br />
+                    break;
+                </div>
+
+                <div class="code-indent-1 hide" data-${++stepToAddForSaveBooksRoute}="">
+                    case "from-server & updated":
+                </div>
+                <div class="code-indent-2 hide" data-${++stepToAddForSaveBooksRoute}="">
+                    delete book.status;
+                </div>
+                <div class="code-indent-2 hide" data-${++stepToAddForSaveBooksRoute}="">
+                    book._id = ObjectId(book._id);
+                </div>
+                <div class="code-indent-2 hide" data-${++stepToAddForSaveBooksRoute}="">
+                    await collection.findOneAndReplace(<span class="hide" data-${++stepToAddForSaveBooksRoute}="">{ _id:
+                        book._id }, book</span>);
+                    <br />
+                    break;
+                </div>
+
+                <div class="code-indent-1 hide" data-${++stepToAddForSaveBooksRoute}="">
+                    case "from-server & deleted":
+                </div>
+                <div class="code-indent-2 hide" data-${++stepToAddForSaveBooksRoute}="">
+                    delete book.status;
+                </div>
+                <div class="code-indent-2 hide" data-${++stepToAddForSaveBooksRoute}="">
+                    book._id = ObjectId(book._id);
+                </div>
+                <div class="code-indent-2 hide" data-${++stepToAddForSaveBooksRoute}="">
+                    await collection.deleteOne(<span class="hide" data-${++stepToAddForSaveBooksRoute}="">{ _id:
+                        book._id }</span>);
+                    <br />
+                    break;
+                </div>
+                }
+            </div>
+            <div class="code-indent-1 hide" data-${++stepToAddForSaveBooksRoute}="">
+                const updatedBooks = await collection.find().toArray();
+            </div>
+
+            <div class="code-indent-1 hide" data-${++stepToAddForSaveBooksRoute}="">
+                response.json(updatedBooks);
+            </div>
+            }
+        </div>
+
+        }
+    </span>);
+</div>
+<div class="code-indent-1">
+    <br />
+    app.listen(80, () => {
+    <br />
+    <div class="code-indent-2">console.log('Listening on port 80');</div>
+    });
+</div>
