@@ -1,0 +1,65 @@
+<!-- Steps for level-4-skill-1 practice.html -->
+<!--
+
+Open App.js
+Delete the whole <div></div> from return();
+Create a new file Dashboard.js in src folder
+
+========================================== html for Dashboard component =====================================
+let stepToAddForDashboardComponent = x;
+let stepForImportStatement = y;
+
+
+<div class="code-indent-1 hide" data-${stepForImportStatement}="">
+    import { NavLink, Outlet } from 'react-router-dom';
+</div>
+
+<div class="code-indent-1 hide" data-${stepToAddForDashboardComponent}="">
+    export default function Dashboard(){
+    <div class="code-indent-1 hide" data-${++stepToAddForDashboardComponent}="">
+        return(
+        <div class="code-indent-1 hide" data-${++stepToAddForDashboardComponent}="">
+            &#60;div&#62;<br />
+            &#60;NavLink to="/dashboard/books"&#62;Books&#60;/NavLink&#62;<br />
+            &#60;NavLink to="/dashboard/products"&#62;Products&#60;/NavLink&#62;<br />
+            &#60;Outlet&#62;&#60;/Outlet&#62;<br />
+            &#60;/div&#62;
+        </div>
+        );
+    </div>
+    }
+</div>
+
+
+=> STEPS ...
+1. export default function Dashboard(){}
+2. return();
+3. Paste the deleted code here
+4. import {NavLink, Outlet} from 'react-router-dom';
+=============================================================================================================
+
+
+
+=> Then go back to app.js....
+
+========================================== html for App component =====================================
+
+let stepToAddCode= x;
+<div class="code-indent-1 hide" data-${stepToAddCode}="">
+    &#60;div&#62;
+        <div class="code-indent-1 hide" data-${++stepToAddCode}="">
+            &#60;outlet&#62;&#60;/outlet&#62;
+        </div>
+
+    &#60;/div&#62;
+</div>
+
+=> STEPS ...
+1. &#60;div&#62;&#60;/div&#62;
+2. &#60;outlet&#62;&#60;/outlet&#62;
+=============================================================================================================
+
+
+
+-->
+

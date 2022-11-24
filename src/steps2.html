@@ -1,0 +1,142 @@
+<!-- 
+    Create a Login.js file
+
+    ========================================== html for Login component =====================================
+    let stepToAddForLoginComponent = x;
+    let stepToAddForLoginHandler = y;
+
+
+    <div class="code-indent-1 hide" data-${stepToAddForLoginComponent}="">
+        import { NavLink, useNavigate } from 'react-router-dom';
+    </div>
+
+    <div class="code-indent-1 hide" data-${++stepToAddForLoginComponent}="">
+        export default function Login(){
+        
+        <div class="code-indent-1 hide" data-${stepToAddForLoginHandler}="">
+            const navigate = useNavigate();
+        </div>
+        <div class="code-indent-1 hide" data-${++stepToAddForLoginHandler}="">
+            const handleLoginClick = () => {
+                <div class="code-indent-1 hide" data-${++stepToAddForLoginHandler}="">
+                    navigate("/dashboard");
+                </div>
+            };
+        </div><br/>
+
+        <div class="code-indent-1 hide" data-${++stepToAddForLoginComponent}="">
+            return(
+            <div class="code-indent-1 hide" data-${++stepToAddForLoginComponent}="">
+                &#60;div style={{border: '1px solid black', padding: '10px'}}&#62;
+                <div class="code-indent-1 hide" data-${++stepToAddForLoginComponent}="">
+                    Username : &#60;input type="text"/&#62; <br/>
+                    &#60;br/&#62;
+                </div>
+                <div class="code-indent-1 hide" data-${++stepToAddForLoginComponent}="">
+                    Password : &#60;input type="text"/&#62; <br/>
+                    &#60;br/&#62;
+                </div>
+                <div class="code-indent-1 hide" data-${++stepToAddForLoginComponent}="">
+                    &#60;button<span class="code-indent-1 hide" data-${++stepToAddForLoginComponent}="">
+                        onClick={onLoginClick}</span>&#62;Login&#60;/button&#62;<br/>
+                    &#60;br/&#62;
+                </div>
+                <div class="code-indent-1 hide" data-${++stepToAddForLoginComponent}="">
+                    New User? &#60;NavLink<span class="code-indent-1 hide"
+                     data-${++stepToAddForLoginComponent}=""> to="/register"</span>&#62;Register...&#60;/NavLink&#62;
+                </div>
+
+                &#60;/div&#62;
+            </div>
+            );
+        </div>
+        }
+    </div>
+
+
+    => STEPS ...
+    1. import {NavLink, useNavigate} from 'react-router-dom';
+    2. export default function Login(){}
+    3. return();
+    4. &#60;div style={{border: '1px solid black', padding: '10px'}}&#62;&#60;/div&#62;
+    5. Username : &#60;input type="text"/&#62;&#60;br/&#62;
+    6. Password : &#60;input type="text"/&#62;&#60;br/&#62;
+    7. &#60;button&#62;Login&#60;button&#62;&#60;br/&#62;
+    8. onClick={onLoginClick}
+    9. New User? &#60;NavLink&#62;Register...&#60;/NavLink&#62;
+    10. to="/register"
+    11. const navigate = useNavigate();
+    12. const handleLoginClick =()=>{};
+    13. navigate("/dashboard");
+    =============================================================================================================
+
+
+    Create a Register.js file
+
+    ========================================== html for Register component =====================================
+    let stepToAddForRegisterComponent = x;
+    let stepToAddForRegisterHandler = y;
+
+
+    <div class="code-indent-1 hide" data-${stepToAddForRegisterComponent}="">
+        import {NavLink} from 'react-router-dom';
+    </div>
+
+    <div class="code-indent-1 hide" data-${++stepToAddForRegisterComponent}="">
+        export default function Register(){
+        
+        <div class="code-indent-1 hide" data-${stepToAddForRegisterHandler}="">
+            const handleRegisterClick = () => {};
+        </div><br/>
+
+        <div class="code-indent-1 hide" data-${++stepToAddForRegisterComponent}="">
+            return(
+            <div class="code-indent-1 hide" data-${++stepToAddForRegisterComponent}="">
+                &#60;div style={{border: '1px solid black', padding: '10px'}}&#62;
+                <div class="code-indent-1 hide" data-${++stepToAddForRegisterComponent}="">
+                    Username : &#60;input type="text"/&#62; <br/>
+                    &#60;br/&#62;
+                </div>
+                <div class="code-indent-1 hide" data-${++stepToAddForRegisterComponent}="">
+                    Password : &#60;input type="text"/&#62; <br/>
+                    &#60;br/&#62;
+                </div>
+                <div class="code-indent-1 hide" data-${++stepToAddForRegisterComponent}="">
+                    Confirm Password : &#60;input type="text"/&#62; <br/>
+                    &#60;br/&#62;
+                </div>
+                <div class="code-indent-1 hide" data-${++stepToAddForRegisterComponent}="">
+                    &#60;button<span class="code-indent-1 hide" data-${++stepToAddForRegisterComponent}="">
+                        onClick={onRegisterClick}</span>&#62;Register&#60;/button&#62;<br/>
+                    &#60;br/&#62;
+                </div>
+                <div class="code-indent-1 hide" data-${++stepToAddForRegisterComponent}="">
+                    Existing User? &#60;NavLink<span class="code-indent-1 hide"
+                     data-${++stepToAddForRegisterComponent}=""> to="/login"</span>&#62;Login...&#60;/NavLink&#62;
+                </div>
+
+                &#60;/div&#62;
+            </div>
+            );
+        </div>
+        }
+    </div>
+
+    => STEPS ...
+    1. import {NavLink} from 'react-router-dom';
+    2. export default function Register(){}
+    3. return();
+    4. &#60;div style={{border: '1px solid black', padding: '10px'}}&#62;&#60;/div&#62;
+    5. Username : &#60;input type="text"/&#62;&#60;br/&#62;
+    6. Password : &#60;input type="text"/&#62;&#60;br/&#62;
+    7. Confirm Password : &#60;input type="text"/&#62;&#60;br/&#62;
+    8. &#60;button&#62;Register&#60;button&#62;&#60;br/&#62;
+    9. onClick={onRegisterClick}
+    10. Existing User? &#60;NavLink&#62;Login...&#60;/NavLink&#62;
+    11. to="/login"
+    12. const handleRegisterClick =()=>{};
+
+    =============================================================================================================
+
+
+ -->

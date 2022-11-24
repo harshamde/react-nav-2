@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 function Login() {
     const navigate = useNavigate();
     const handleLoginClick = () => {
-        navigate("/dashboard")
+        navigate("/dashboard");
     };
 
     return (

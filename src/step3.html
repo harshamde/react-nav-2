@@ -1,0 +1,111 @@
+<!-- GoTo index.js 
+
+========================================== html for index.js =====================================
+    let stepToAddForindexJsComponent = x;
+
+    ****************************************************************************************************
+        First step will be of importing Navigate from 'react-router-dom'. 
+        For that add below given html in "import {BrowserRouter, Routes, Route} from 'react-router-dom';"
+      
+        <span class="hide" data-${stepToAddForindexJsComponent}="">,Navigate</span>
+
+    *****************************************************************************************************
+
+
+    <div class="code-indent-1 hide" data-${++stepToAddForindexJsComponent}="">
+        import Dashboard from './Dashboard';
+    </div>
+    <div class="code-indent-1 hide" data-${++stepToAddForindexJsComponent}="">
+        import Login from './Login';
+    </div>
+    <div class="code-indent-1 hide" data-${++stepToAddForindexJsComponent}="">
+        import Register from './Register';
+    </div>
+
+    ---------------------------- This should be pasted inside <Routes></Routes> tag ---------------------------- 
+
+    <div class="code-indent-1 hide" data-${++stepToAddForindexJsComponent}="">
+        &#60;Route<span class="hide" data-${++stepToAddForindexJsComponent}="">
+            path="/" <span class="hide" data-${++stepToAddForindexJsComponent}="">element={<App/>}</span></span>&#62;
+
+            <div class="code-indent-1 hide" data-${++stepToAddForindexJsComponent}="">
+                &#60;Route<span class="hide" data-${++stepToAddForindexJsComponent}="">
+                    path="login" <span class="hide" data-${++stepToAddForindexJsComponent}="">element={<Login/>}</span></span>&#62;
+                &#60;/Route&#62;
+            </div>
+
+            <div class="code-indent-1 hide" data-${++stepToAddForindexJsComponent}="">
+                &#60;Route<span class="hide" data-${++stepToAddForindexJsComponent}="">
+                    path="register" <span class="hide" data-${++stepToAddForindexJsComponent}="">element={<Register/>}</span></span>&#62;
+                &#60;/Route&#62;
+            </div>
+
+            <div class="code-indent-1 hide" data-${++stepToAddForindexJsComponent}="">
+                &#60;Route<span class="hide" data-${++stepToAddForindexJsComponent}="">
+                    path="dashboard" <span class="hide" data-${++stepToAddForindexJsComponent}="">element={<Dashboard/>}</span></span>&#62;
+
+                    <div class="code-indent-1 hide" data-${++stepToAddForindexJsComponent}="">
+                        &#60;Route<span class="hide" data-${++stepToAddForindexJsComponent}="">
+                            path="books" <span class="hide" data-${++stepToAddForindexJsComponent}="">element={<BooksManager/>}</span></span>&#62;
+                        &#60;/Route&#62;
+                    </div>
+
+                    <div class="code-indent-1 hide" data-${++stepToAddForindexJsComponent}="">
+                        &#60;Route<span class="hide" data-${++stepToAddForindexJsComponent}="">
+                            path="products" <span class="hide" data-${++stepToAddForindexJsComponent}="">element={<ProductsManager/>}</span></span>&#62;
+                        &#60;/Route&#62;
+                    </div>
+
+                &#60;/Route&#62;
+            </div>
+
+            <div class="code-indent-1 hide" data-${++stepToAddForindexJsComponent}="">
+                &#60;Route<span class="hide" data-${++stepToAddForindexJsComponent}="">
+                    path="/" <span class="hide" data-${++stepToAddForindexJsComponent}="">element={<Navigate
+                        <span class="hide" data-${++stepToAddForindexJsComponent}="">to="login"</span>/>}</span></span>&#62;
+                &#60;/Route&#62;
+            </div>
+
+        &#60;/Route&#62;
+    </div>
+
+
+
+    ---------------------------- This should be pasted inside <Routes></Routes> tag ---------------------------- 
+
+    => STEPS...
+    
+    1. Add ",Navigate" at import statement. ==> ,Navigate
+    2. import Dashboard from './Dashboard';
+    3. import Login from './Login';
+    4. import Register from './Register';
+    5. Delete everything inside of <Routes></Routes> tag
+    6. &#60;Route&#60;/Route&#62;
+    7. path="/"
+    8. element={<App />}
+    9. &#60;Route&#60;/Route&#62;
+    10. path="login"
+    11. element={<login/>}
+    12. &#60;Route&#60;/Route&#62;
+    13. path="register"
+    14. element={<Register/>}
+    15. &#60;Route&#60;/Route&#62;
+    16. path="dashboard"
+    17. element={<Dashboard/>}
+    18 . &#60;Route&#60;/Route&#62;
+    19. path="books"
+    20. element={<BooksManager/>}
+    21. &#60;Route&#60;/Route&#62;
+    22. path="products"
+    23. element={<ProductsManager/>}
+    24. &#60;Route&#60;/Route&#62;
+    25. path="/"
+    26. element={<Navigate/>}
+    27. to="login"
+
+
+
+
+
+
+-->

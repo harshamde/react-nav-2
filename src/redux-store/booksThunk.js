@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import fetch from "./fetch";
+import Fetch from "./Fetch";
 
 const BooksThunk = {
 
@@ -7,7 +7,7 @@ const BooksThunk = {
         'getBooksFromServer',
         async () => {
             try {
-                const books = await fetch({ url: "http://192.168.0.40:3001/get-books", method: "get" });
+                const books = await Fetch({ url: "http://192.168.0.40:3001/get-books", method: "get" });
                 return ({ books });
             } catch (error) {
                 throw error;
@@ -19,7 +19,7 @@ const BooksThunk = {
         'saveBooksToServer',
         async (data) => {
             try {
-                const books = await fetch({ url: "http://192.168.0.40:3001/save-books", method: "post", data });
+                const books = await Fetch({ url: "http://192.168.0.40:3001/save-books", method: "post", data });
                 return { books };
             } catch (error) {
                 throw error;
