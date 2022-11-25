@@ -1,14 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import Fetch from "./Fetch";
+import fetch from "./fetch";
 
 const BooksThunk = {
-
     getBooksFromServer: createAsyncThunk(
         'getBooksFromServer',
-        async () => {
+        async (data) => {
             try {
-                const books = await Fetch({ url: "http://192.168.0.40:3001/get-books", method: "get" });
-                return ({ books });
+                const books = await fetch({ url: "http://192.168.0.40:3001/get-books", method: "get", jwt: data.jwtToken });
+                if (books.status === "FAILED") {
+                    throw (books.message);
+                }
+                return { books };
             } catch (error) {
                 throw error;
             }
@@ -19,12 +21,12 @@ const BooksThunk = {
         'saveBooksToServer',
         async (data) => {
             try {
-                const books = await Fetch({ url: "http://192.168.0.40:3001/save-books", method: "post", data });
+                const books = await fetch({ url: "http://192.168.0.40:3001/save-books", method: "post", data: data.books, jwt: data.jwtToken });
                 return { books };
             } catch (error) {
                 throw error;
             }
         }
-    )
+    ),
 }
 export default BooksThunk;

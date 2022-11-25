@@ -9,7 +9,6 @@ const Register = () => {
     const dispatch = useDispatch();
 
     const handleRegisterClick = () => {
-        console.log("click");
         const dataToSend = {
             username: userSliceState.username,
             password: userSliceState.password,

@@ -40,13 +40,14 @@ function BookEditView({ book, index }) {
 
 function BooksManager() {
     const booksSliceState = useSelector(store => store.booksSliceState);
+    const userSliceState = useSelector(store => store.userSliceState);
     const dispatch = useDispatch();
 
     return (
         <div >
             <br />
 
-            <button onClick={() => dispatch(getBooksFromServer())}>Get Books</button>
+            <button onClick={() => dispatch(getBooksFromServer({ jwtToken: userSliceState.jwtToken }))}>Get Books</button>
             <br />
 
             <br />
@@ -68,7 +69,7 @@ function BooksManager() {
             {
                 booksSliceState.isSaving
                     ? <div> "Saving..." </div>
-                    : <button onClick={() => dispatch(saveBooksToServer(booksSliceState.books))}>Save To Database</button>
+                    : <button onClick={() => dispatch(saveBooksToServer({ books: booksSliceState.books, jwtToken: userSliceState.jwtToken }))}>Save To Database</button>
             }
 
         </div >);

@@ -1,11 +1,9 @@
-import { useSelector } from "react-redux";
 
-const Fetch = ({ url, method, data }) => {
-    const userSliceState = useSelector(state => state.userSliceState);
+const fetch = ({ url, method, data, jwt }) => {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.open(method, url, true);
-        xhr.setRequestHeader("Authorization", "Bearer" + userSliceState.jwt);
+        jwt && xhr.setRequestHeader("Authorization", "Bearer" + jwt);
         method.toLowerCase() === "post" && xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onload = () => {
             const json = xhr.responseText;
@@ -21,4 +19,4 @@ const Fetch = ({ url, method, data }) => {
     });
 };
 
-export default Fetch;
+export default fetch;
