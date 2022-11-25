@@ -27,11 +27,14 @@ const Register = () => {
             Password : <input type="text" value={userSliceState.password} onChange={(e) => dispatch(userSlice.actions.passwordChange({ password: e.target.value }))} />
             <br />
             Confirm Password : <input type="text" value={userSliceState.confirmPassword} onChange={(e) => dispatch(userSlice.actions.confirmPasswordChange({ confirmPassword: e.target.value }))} />
+            <br /><br />
+            {userSliceState.isLoading ? <label>Please wait...</label> :
+                <button onClick={handleRegisterClick}>Register</button>}
             <br />
-            <button onClick={handleRegisterClick}>Register</button>
+            {userSliceState.error && <div style={{ color: "red" }}>{userSliceState.error}</div>}
             <br />
             Existing User? <NavLink to="/login">Login...</NavLink>
-        </div>
+        </div >
     );
 }
 
