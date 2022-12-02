@@ -1,4 +1,3 @@
-
 const fetch = ({ url, method, data, jwt }) => {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -7,6 +6,7 @@ const fetch = ({ url, method, data, jwt }) => {
         method.toLowerCase() === "post" && xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onload = () => {
             const json = xhr.responseText;
+            console.log(json);
             const data = JSON.parse(json);
             resolve(data);
         };

@@ -67,7 +67,7 @@ const userSlice = createSlice({
         builder.addCase(userLogin.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isLoggedIn = true;
-            state.jwtToken = action.payload.jwtToken;
+            // state.jwtToken = action.payload.jwtToken;
         });
 
         builder.addCase(userLogin.rejected, (state, action) => {

@@ -19,9 +19,7 @@ const Register = () => {
             password: userSliceState.password,
             confirmPassword: userSliceState.confirmPassword
         };
-
-        dispatch(userRegistration(dataToSend));
-
+         dispatch(userRegistration(dataToSend));
     };
 
 
@@ -29,9 +27,9 @@ const Register = () => {
         <div style={{ display: 'inline-block', border: '1px solid black', padding: '10px' }}>
             Username : <input type="text" value={userSliceState.username} onChange={(e) => dispatch(userSlice.actions.usernameChange({ username: e.target.value }))} />
             <br />
-            Password : <input type="text" value={userSliceState.password} onChange={(e) => dispatch(userSlice.actions.passwordChange({ password: e.target.value }))} />
+            Password : <input type="password" value={userSliceState.password} onChange={(e) => dispatch(userSlice.actions.passwordChange({ password: e.target.value }))} />
             <br />
-            Confirm Password : <input type="text" value={userSliceState.confirmPassword} onChange={(e) => dispatch(userSlice.actions.confirmPasswordChange({ confirmPassword: e.target.value }))} />
+            Confirm Password : <input type="password" value={userSliceState.confirmPassword} onChange={(e) => dispatch(userSlice.actions.confirmPasswordChange({ confirmPassword: e.target.value }))} />
             <br /><br />
 
             {console.log(userSliceState.sitekey)}
