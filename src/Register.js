@@ -4,6 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import userSlice from './redux-store/userSlice';
 import { userRegistration } from './redux-store/userThunk';
 
+//#region recaptcha
+import ReCAPTCHA from 'react-google-recaptcha'
+// import axios from 'axios';
+//#endregion
+
 const Register = () => {
     const userSliceState = useSelector(store => store.userSliceState);
     const dispatch = useDispatch();
@@ -28,8 +33,17 @@ const Register = () => {
             <br />
             Confirm Password : <input type="text" value={userSliceState.confirmPassword} onChange={(e) => dispatch(userSlice.actions.confirmPasswordChange({ confirmPassword: e.target.value }))} />
             <br /><br />
+
+            {console.log(userSliceState.sitekey)}
+ 
+            <ReCAPTCHA
+                sitekey="6Lc5HEYjAAAAAC8eo9CjoupUzsXPX9Xgn1DTMd_v"
+                // sitekey={userSliceState.sitekey}
+                onChange={() => { dispatch(userSlice.actions.recaptchaTokenChanged()) }}
+            />
+
             {userSliceState.isLoading ? <label>Please wait...</label> :
-                <button onClick={handleRegisterClick}>Register</button>}
+                <button onClick={handleRegisterClick} disabled={!userSliceState.isRecaptchaVerified}>Register</button>}
             <br />
             {userSliceState.error && <div style={{ color: "red" }}>{userSliceState.error}</div>}
             <br />

@@ -11,6 +11,8 @@ const userSlice = createSlice({
         isLoading: false,
         isLoggedIn: false,
         error: null,
+        siteKey: "6Lc5HEYjAAAAAC8eo9CjoupUzsXPX9Xgn1DTMd_v",
+        isRecaptchaVerified: false
     },
 
     reducers: {
@@ -25,6 +27,10 @@ const userSlice = createSlice({
         confirmPasswordChange: (state, action) => {
             state.confirmPassword = action.payload.confirmPassword;
         },
+
+        recaptchaTokenChanged: (state, action) => {
+            console.log(action.payload);
+        }
     },
 
     extraReducers: (builder) => {
