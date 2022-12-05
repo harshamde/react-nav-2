@@ -29,7 +29,8 @@ const userSlice = createSlice({
         },
 
         recaptchaTokenChanged: (state, action) => {
-            console.log(action.payload);
+            // console.log(action.payload);
+            // state.isRecaptchaVerified = action.payload != undefined
         }
     },
 

@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="/iframe/file-content">
         <Routes>
           <Route path="/" element={<App />}>
             <Route path="login" element={<Login />}></Route>

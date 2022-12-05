@@ -19,9 +19,12 @@ const Register = () => {
             password: userSliceState.password,
             confirmPassword: userSliceState.confirmPassword
         };
-         dispatch(userRegistration(dataToSend));
+        dispatch(userRegistration(dataToSend));
     };
 
+    async function onChange(value) {
+        dispatch(userSlice.actions.recaptchaTokenChanged(value));
+    }
 
     return (
         <div style={{ display: 'inline-block', border: '1px solid black', padding: '10px' }}>
@@ -32,16 +35,13 @@ const Register = () => {
             Confirm Password : <input type="password" value={userSliceState.confirmPassword} onChange={(e) => dispatch(userSlice.actions.confirmPasswordChange({ confirmPassword: e.target.value }))} />
             <br /><br />
 
-            {console.log(userSliceState.sitekey)}
- 
             <ReCAPTCHA
                 sitekey="6Lc5HEYjAAAAAC8eo9CjoupUzsXPX9Xgn1DTMd_v"
-                // sitekey={userSliceState.sitekey}
-                onChange={() => { dispatch(userSlice.actions.recaptchaTokenChanged()) }}
+                onChange={onChange}
             />
 
             {userSliceState.isLoading ? <label>Please wait...</label> :
-                <button onClick={handleRegisterClick} disabled={!userSliceState.isRecaptchaVerified}>Register</button>}
+                <button onClick={handleRegisterClick}>Register</button>}
             <br />
             {userSliceState.error && <div style={{ color: "red" }}>{userSliceState.error}</div>}
             <br />
