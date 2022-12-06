@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import userSlice from './redux-store/userSlice';
@@ -17,14 +17,20 @@ const Register = () => {
         const dataToSend = {
             username: userSliceState.username,
             password: userSliceState.password,
-            confirmPassword: userSliceState.confirmPassword
+            confirmPassword: userSliceState.confirmPassword,
+            recaptchaToken: userSliceState.recaptchaToken
+
         };
         dispatch(userRegistration(dataToSend));
     };
 
     async function onChange(value) {
-        dispatch(userSlice.actions.recaptchaTokenChanged(value));
+        dispatch(userSlice.actions.recaptchaTokenChanged({ recaptchaToken: value }));
     }
+
+    useEffect(() => {
+        dispatch(userSlice.actions.clearData());
+    }, []);
 
     return (
         <div style={{ display: 'inline-block', border: '1px solid black', padding: '10px' }}>

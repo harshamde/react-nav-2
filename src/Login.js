@@ -1,10 +1,10 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { userLogin } from "./redux-store/userThunk";
 import { useDispatch, useSelector } from 'react-redux';
 import userSlice from './redux-store/userSlice';
+import { useEffect } from "react";
 
 function Login() {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const userSliceState = useSelector(store => store.userSliceState);
 
@@ -17,6 +17,9 @@ function Login() {
         dispatch(userLogin(dataToSend));
     };
 
+    useEffect(() => {
+        dispatch(userSlice.actions.clearData());
+    }, []);
 
     return (
         <div style={{ display: 'inline-block', border: '1px solid black', padding: '10px' }}>

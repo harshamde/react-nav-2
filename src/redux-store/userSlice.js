@@ -10,9 +10,11 @@ const userSlice = createSlice({
         jwtToken: "",
         isLoading: false,
         isLoggedIn: false,
+        isRegistered: false,
         error: null,
         siteKey: "6Lc5HEYjAAAAAC8eo9CjoupUzsXPX9Xgn1DTMd_v",
-        isRecaptchaVerified: false
+        isRecaptchaVerified: false,
+        recaptchaToken: null
     },
 
     reducers: {
@@ -29,8 +31,14 @@ const userSlice = createSlice({
         },
 
         recaptchaTokenChanged: (state, action) => {
-            // console.log(action.payload);
-            // state.isRecaptchaVerified = action.payload != undefined
+            state.recaptchaToken = action.payload.recaptchaToken;
+        },
+
+        clearData: (state, action) => {
+            state.password = "";
+            state.username = "";
+            state.confirmPassword = "";
+            state.error = null;
         }
     },
 
@@ -41,17 +49,26 @@ const userSlice = createSlice({
         builder.addCase(userRegistration.pending, (state, action) => {
             state.isLoading = true;
             state.error = null;
+            state.isRegistered = false;
+
         });
 
         builder.addCase(userRegistration.fulfilled, (state, action) => {
             state.isLoading = false;
             state.password = "";
+            state.username = "";
             state.confirmPassword = "";
+            state.isRegistered = true;
+            state.error = null;
         });
 
         builder.addCase(userRegistration.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
+            state.isRegistered = false;
+            state.password = "";
+            state.username = "";
+            state.confirmPassword = "";
         });
 
         //#endregion
@@ -68,13 +85,19 @@ const userSlice = createSlice({
         builder.addCase(userLogin.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isLoggedIn = true;
-            // state.jwtToken = action.payload.jwtToken;
+            state.password = "";
+            state.username = "";
+            state.confirmPassword = "";
+            state.error = null;
         });
 
         builder.addCase(userLogin.rejected, (state, action) => {
             state.isLoggedIn = false;
             state.isLoading = false;
             state.error = action.error.message;
+            state.password = "";
+            state.username = "";
+            state.confirmPassword = "";
         });
 
         //#endregion
