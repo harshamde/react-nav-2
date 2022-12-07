@@ -12,9 +12,9 @@ const userSlice = createSlice({
         isLoggedIn: false,
         isRegistered: false,
         error: null,
-        siteKey: "6Lc5HEYjAAAAAC8eo9CjoupUzsXPX9Xgn1DTMd_v",
-        isRecaptchaVerified: false,
-        recaptchaToken: null
+        // siteKey: "6Lc5HEYjAAAAAC8eo9CjoupUzsXPX9Xgn1DTMd_v",
+        // isRecaptchaVerified: false,
+        // recaptchaToken: null
     },
 
     reducers: {
@@ -30,9 +30,19 @@ const userSlice = createSlice({
             state.confirmPassword = action.payload.confirmPassword;
         },
 
-        recaptchaTokenChanged: (state, action) => {
-            state.recaptchaToken = action.payload.recaptchaToken;
+        googleLoginSuccess: (state, action) => {
+            let isLoginSuccess = action.payload;
+            
+            if (isLoginSuccess) {
+                state.isLoggedIn = isLoginSuccess;
+            } else {
+                state.error = "Google sign in failed";
+            }
         },
+
+        // recaptchaTokenChanged: (state, action) => {
+        //     state.recaptchaToken = action.payload.recaptchaToken;
+        // },
 
         clearData: (state, action) => {
             state.password = "";

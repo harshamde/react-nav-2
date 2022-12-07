@@ -11,25 +11,29 @@ import { store } from "./redux-store/store";
 import Login from './Login';
 import App from './App';
 import Register from './Register';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter basename="/iframe/file-content">
-        <Routes>
-          <Route path="/" element={<App />}>
-            <Route path="login" element={<Login />}></Route>
-            <Route path="register" element={<Register />}></Route>
-            <Route path="dashboard" element={<Dashboard />}>
-              <Route path="books" element={<BooksManager />} ></Route>
-              <Route path="products" element={<ProductsManager />} ></Route>
+    <GoogleOAuthProvider clientId="15671705783-7ueu8ul40m6nu20d463mlrcpqpsdj9md.apps.googleusercontent.com">
+      <Provider store={store}>
+        {/* <BrowserRouter basename="/iframe/file-content"> */}
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route path="login" element={<Login />}></Route>
+              <Route path="register" element={<Register />}></Route>
+              <Route path="dashboard" element={<Dashboard />}>
+                <Route path="books" element={<BooksManager />} ></Route>
+                <Route path="products" element={<ProductsManager />} ></Route>
+              </Route>
+              <Route path="/" element={<Navigate to="login" />}></Route>
             </Route>
-            <Route path="/" element={<Navigate to="login" />}></Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );
 

@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import userSlice from './redux-store/userSlice';
 import { userRegistration } from './redux-store/userThunk';
-
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from "jwt-decode";
 //#region recaptcha
 import ReCAPTCHA from 'react-google-recaptcha'
 // import axios from 'axios';
@@ -18,7 +19,7 @@ const Register = () => {
             username: userSliceState.username,
             password: userSliceState.password,
             confirmPassword: userSliceState.confirmPassword,
-            recaptchaToken: userSliceState.recaptchaToken
+            // recaptchaToken: userSliceState.recaptchaToken
 
         };
         dispatch(userRegistration(dataToSend));
@@ -46,12 +47,38 @@ const Register = () => {
                 onChange={onChange}
             />
 
+
             {userSliceState.isLoading ? <label>Please wait...</label> :
                 <button onClick={handleRegisterClick}>Register</button>}
             <br />
             {userSliceState.error && <div style={{ color: "red" }}>{userSliceState.error}</div>}
             <br />
+            <div style={{ textAlign:'center'}}>
+                OR
+            </div>
+            <br />
+
+            <GoogleLogin
+
+                onSuccess={credentialResponse => {
+
+                    var token = credentialResponse.credential;
+                    var decoded = jwt_decode(token);
+
+                    console.log(decoded);
+
+                    //console.log(credentialResponse);
+                    dispatch(userSlice.actions.googleLoginSuccess(true));
+                }}
+                onError={() => {
+                    console.log('Login Failed');
+                    dispatch(userSlice.actions.googleLoginSuccess(false));
+
+                }}
+            />
+            <br />
             Existing User? <NavLink to="/login">Login...</NavLink>
+
         </div >
     );
 }
