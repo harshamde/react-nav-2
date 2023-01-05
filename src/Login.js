@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { userLogin } from "./redux-store/userThunk";
 import { useDispatch, useSelector } from 'react-redux';
 import userSlice from './redux-store/userSlice';
+import { useEffect } from "react";
 
 function Login() {
     const dispatch = useDispatch();
@@ -15,12 +16,15 @@ function Login() {
         dispatch(userLogin(dataToSend));
     };
 
+    useEffect(() => {
+        dispatch(userSlice.actions.clearData());
+    }, []);
 
     return (
         <div style={{ display: 'inline-block', border: '1px solid black', padding: '10px' }}>
             Username : <input type="text" value={userSliceState.username} onChange={(e) => dispatch(userSlice.actions.usernameChange({ username: e.target.value }))} />
             <br />
-            Password : <input type="text" value={userSliceState.password} onChange={(e) => dispatch(userSlice.actions.passwordChange({ password: e.target.value }))} />
+            Password : <input type="password" value={userSliceState.password} onChange={(e) => dispatch(userSlice.actions.passwordChange({ password: e.target.value }))} />
             <br /><br />
             {userSliceState.isLoading ? <label>Please wait...</label> :
                 <button onClick={handleLoginClick}>Login</button>}

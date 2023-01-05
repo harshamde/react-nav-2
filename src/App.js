@@ -13,6 +13,11 @@ const App = () => {
         }
     }, [userSliceState.isLoggedIn]);
 
+    useEffect(() => {
+        if (userSliceState.isRegistered) {
+            navigate("/login");
+        }
+    }, [userSliceState.isRegistered]);
 
     return (
         <Outlet></Outlet>
