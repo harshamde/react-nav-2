@@ -15,9 +15,7 @@ const App = () => {
 
 
     return (
-        <div>
-            <Outlet></Outlet>
-        </div>
+        <Outlet></Outlet>
     );
 }
 
